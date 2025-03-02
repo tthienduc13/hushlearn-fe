@@ -1,6 +1,8 @@
-import { Button } from '@/components/ui/button';
-import { H1, InlineCode } from '@/components/ui/typography';
 import Image from 'next/image';
+
+import { ThemeSwitcher } from '@/components/core/commons/theme-switcher';
+import { H1, InlineCode } from '@/components/ui/typography';
+import { Button } from '@ui/button';
 
 export default function Home() {
   const abc = 'abc';
@@ -8,6 +10,7 @@ export default function Home() {
     <div className="flex flex-col">
       <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
         <Button variant={'destructive'}>asdf</Button>
+        <ThemeSwitcher></ThemeSwitcher>
         <H1>{abc}</H1>
         <Image
           className="dark:invert"

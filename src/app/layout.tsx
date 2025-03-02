@@ -1,16 +1,11 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Suspense } from 'react';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import { Loading } from '@components/core/commons/loading';
+import Scroll from '@components/core/commons/scroll';
+import { AppProviders } from '@components/core/providers/app-provider';
+import { cn } from '@lib/utils';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,11 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html suppressHydrationWarning lang="vi">
+      <body className={cn()}>
+        <Suspense fallback={<Loading />}>
+          <Scroll />
+          <AppProviders>{children}</AppProviders>
+        </Suspense>
       </body>
     </html>
   );

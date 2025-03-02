@@ -1,8 +1,10 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
 import { FlatCompat } from '@eslint/eslintrc';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginTypeScript from '@typescript-eslint/eslint-plugin';
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 
@@ -33,6 +35,7 @@ const eslintConfig = [
       '@typescript-eslint': eslintPluginTypeScript,
       react: eslintPluginReact,
       'react-hooks': eslintPluginReactHooks,
+      import: eslintPluginImport,
     },
     rules: {
       // JavaScript rules
@@ -55,6 +58,22 @@ const eslintConfig = [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'prettier/prettier': 'warn',
+      // Import rules
+      'import/order': [
+        'warn',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+          ],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'import/newline-after-import': 'warn',
+      'import/no-duplicates': 'warn',
       // Tailwind CSS Plugin
       // "tailwindcss/classnames-order": "warn",
       // "tailwindcss/enforces-shorthand": "warn",
