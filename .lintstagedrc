@@ -1,8 +1,10 @@
 {
-    "src/**/*.+(js|json|ts|tsx)": [
+    "*/**/*.{js,jsx,ts,tsx}": [
+        "prettier --write",
+        "eslint --fix",
         "eslint"
     ],
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "*/**/*.{json,css,md}": [
         "prettier --write"
     ]
 }
